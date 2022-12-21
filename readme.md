@@ -10,3 +10,5 @@ Some screenshot:
 ![obraz](https://user-images.githubusercontent.com/23406555/208991840-63f82f6f-bb18-4314-99a7-9d7dcdf30814.png)
 ![obraz](https://user-images.githubusercontent.com/23406555/208991767-95d9989e-fdc7-4101-b0d5-9df498f01e4e.png)
 
+The newest theme download with source of gtksourceview widget: https://download.gnome.org/sources/gtksourceview/
+Ubuntu 22.04 version for GNOME 3.24: https://packages.ubuntu.com/jammy/amd64/libgtksourceview-3.0-1/download
