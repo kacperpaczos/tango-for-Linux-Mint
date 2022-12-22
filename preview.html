@@ -1,0 +1,210 @@
+<!doctype html>
+
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+
+  <title>Website to preview a gtksourceview color schema files</title>
+  <meta name="description" content="Website to preview a gtksourceview color schema files.">
+  <meta name="author" content="Kacper Paczos">
+  <style>
+  body{
+    background-color: #404040;
+
+  }
+  h1{
+    color: white;
+    text-align: center;
+  }
+
+  #id{
+    display: flex;
+  }
+  .row-flex{
+    display: flex;
+  }
+  .row-flex > div{
+    flex: 50%;
+    text-align: center;
+    color: white;
+    margin: auto;
+    display: flex;
+  }
+  .row-flex > h2{
+    flex: 50%;
+    text-align: center;
+    color: white;
+  }
+  h3{
+    flex: 50%;
+    text-align: right;
+  }
+  .square-box{
+    flex: 50%;
+  }
+  .square{
+    width: 40px;
+    height: 40px;
+    background-color: red;
+
+    margin: auto;
+    border: none;
+    border-radius: 6px;
+  }
+  </style>
+
+</head>
+
+<body>
+  <!-- your content here... -->
+
+  <div id = "hideme" style="display: block;">
+    <h1>Load colors palette from: /usr/share/gtksourceview-4/styles</h1>
+    <input id="fl" name="fl" type="file" style="margin:auto;"/>
+  </div>
+  <div id = "showme" style="display: none;">
+    <h1>Color Schema</h1>
+    <div id="gen">
+      <div class="row-flex">
+        <h2>Previous</h2>
+        <h2>Next</h2>
+      </div>
+      <div class="row-flex">
+        <div>
+          <h3>text</h3>
+          <div class="square-box">
+            <div class="square"></div>
+          </div>
+        </div>
+        <div>
+          <h3>text</h3>
+          <div class="square-box">
+            <div class="square"></div>
+          </div>
+      </div>
+    </div>
+  </div>
+  <script>
+  var colorsHex = [];
+  var colorsName = [];
+  var draw = 0;
+  function genFun(){
+    var gen = document.getElementById("gen");
+
+    console.log("Petla");
+    console.log(colorsName);
+    console.log(colorsName.length);
+    for(let i = 0 ; i < colorsName.length; i++) {
+      let val = colorsName[i] + colorsHex[i];
+      console.log(val);
+      var rowFlex = document.createElement("div");
+      rowFlex.classList.add("row-flex");
+
+      var left = document.createElement("div");
+
+      var lefth3 = document.createElement("h3");
+      var leftText = document.createTextNode(colorsName[i]);
+      lefth3.appendChild(leftText);
+      var leftdiv = document.createElement("div");
+      leftdiv.classList.add("square-box");
+      var leftsquare = document.createElement("div");
+      leftsquare.classList.add("square");
+      leftsquare.style.backgroundColor = colorsHex[i];
+
+      leftdiv.appendChild(leftsquare);
+      left.appendChild(lefth3);
+      left.appendChild(leftdiv);
+      left.style.display = "flex";
+
+      rowFlex.appendChild(left);
+
+      var right = document.createElement("div");
+      var righth3 = document.createElement("h3");
+      var rightText = document.createTextNode(colorsName[i]);
+      righth3.appendChild(rightText);
+      var rightdiv = document.createElement("div");
+      rightdiv.classList.add("square-box");
+      var rightsquare = document.createElement("div");
+      rightsquare.classList.add("square");
+      rightsquare.style.backgroundColor = colorsHex[i];
+
+      rightdiv.appendChild(rightsquare);
+      right.appendChild(righth3);
+      right.appendChild(rightdiv);
+      right.style.display = "flex";
+
+      rowFlex.appendChild(right);
+
+      gen.appendChild(rowFlex);
+    }
+    console.log("Koniec Petli");
+  }
+  document.getElementById('fl').onchange = function(){
+
+    var fl = this.files[0];
+
+    var reader = new FileReader();
+    reader.onload = function(progressEvent){
+      // Entire file
+      //console.log(this.result);
+
+      // By allrows
+      var allrows = this.result.split('\n');
+      for(var row = 0; row < allrows.length; row++){
+        const str = '<color name="';
+        var x = allrows[row].indexOf(str);
+        //console.log(x)
+        if(x != -1){
+          var newstring = allrows[row].substring(x+str.length, 200);
+          const str1 = '"';
+          var y = newstring.indexOf(str1);
+          //console.log(y);
+          if(y != -1){
+            //console.log(newstring.substring(0, y));
+            colorsName.push(newstring.substring(0, y));
+          }
+
+          const str2 = 'value="'
+          var newFind = allrows[row].substring(x+str2.length, 200)
+          var z = newFind.indexOf(str2);
+          //console.log(newFind.substring(x+str2.length, 200));
+          //console.log(z);
+          if(z != -1){
+            var newstring = newFind.substring(z+str2.length, 200)
+            //console.log(newstring);
+            const str3 = '"';
+            var k = newstring.indexOf(str3);
+            //console.log(k);
+            if(k != -1){
+              //console.log(newstring.substring(0, k));
+              colorsHex.push(newstring.substring(0, k));
+            }
+          }
+        }
+      }
+      draw = 1;
+      console.log(colorsName);
+      console.log(colorsHex);
+
+      if(draw == 1){
+        console.log("Chowam");
+        document.getElementById("hideme").style.display = "none";
+        genFun();
+        console.log("Pokazuje");
+        document.getElementById("showme").style.display = "block";
+      }
+    };
+
+
+    reader.readAsText(fl);
+
+
+
+
+
+  };
+
+  </script>
+</body>
+</html>
