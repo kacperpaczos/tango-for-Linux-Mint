@@ -1,7 +1,20 @@
 
-### Tango - default color schema for Xed on Linux Mint
+### Tango - is a default color schema for Xed on Linux Mint.
 
-I renew tango.xml for my purpose, because default color palette look terrible with new Linux Mint ***Dark*** Theme.
+Tango.xml was renewed for my purposes because default color palette look terrible with new Linux Mint ***Dark*** Theme.  
+Examples below.
+
+I have done a preview.html file to open in your browser (required a pure JS support) to load and show colors from the schemas.
+You can set new color and test it for light/dark theme.
+
+It's just a simple tool because [Schemes v 0.2](https://github.com/kacperpaczos/Gnome-Schemes) doesn't work for me.
+Maybe in [future releases](https://gitlab.gnome.org/chergert/schemes), Gnome Schemes will more useful.
+
+Links:  
+[Creating GtkSourceView style schemes
+](https://blogs.gnome.org/chergert/2022/01/22/creating-gtksourceview-style-schemes/)  
+[Style Scheme Definition Reference](https://gnome.pages.gitlab.gnome.org/gtksourceview/gtksourceview5/style-reference.html)  
+[Contrast Checker](https://webaim.org/resources/contrastchecker/)  
 
 Some screenshot:   
 ![obraz](https://user-images.githubusercontent.com/23406555/208991435-e367dd6d-42ed-4522-8e2e-406ef3e72b4e.png)
