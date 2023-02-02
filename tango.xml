@@ -16,9 +16,8 @@
  MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the GNU
  Lesser General Public License for more details.
 
- You should have received a copy of the GNU Lesser General Public
- License along with this library; if not, write to the Free Software
- Foundation, Inc., 51 Franklin St, Fifth Floor, Boston, MA  02110-1301  USA
+ You should have received a copy of the GNU Lesser General Public License
+ along with this library; if not, see <http://www.gnu.org/licenses/>.
 
 -->
 <style-scheme id="tango" _name="Tango" version="1.0">
@@ -55,6 +54,7 @@
   <color name="aluminium6"                  value="#2e3436"/>
 
   <!-- Global Settings -->
+  <style name="line-numbers"                background="#rgba(18,20,21,0.005)"/>
   <style name="current-line"                background="aluminium1"/>
   <style name="current-line-number"         background="aluminium1"/>
   <style name="draw-spaces"                 foreground="aluminium3"/>
@@ -88,12 +88,26 @@
   <!-- Types -->
   <style name="def:type"                    foreground="chameleon3" bold="true"/>
 
+  <!-- Markup -->
+  <style name="def:emphasis"                italic="true"/>
+  <style name="def:strong-emphasis"         foreground="scarletred3" bold="true"/>
+  <style name="def:inline-code"             foreground="skyblue2"/>
+  <style name="def:insertion"               underline="single"/>
+  <style name="def:deletion"                strikethrough="true"/>
+  <style name="def:link-text"               foreground="skyblue3"/>
+  <style name="def:link-symbol"             foreground="skyblue3" bold="true"/>
+  <style name="def:link-destination"        italic="true" underline="single"/>
+  <style name="def:heading"                 foreground="chameleon3" bold="true"/>
+  <style name="def:thematic-break"          foreground="chameleon3" bold="true"/>
+  <style name="def:preformatted-section"    foreground="skyblue2"/>
+  <style name="def:list-marker"             foreground="scarletred3" bold="true"/>
+
   <!-- Others -->
   <style name="def:preprocessor"            foreground="chocolate3"/>
   <style name="def:error"                   background="scarletred2" bold="true"/>
   <style name="def:warning"                 background="plum1"/>
   <style name="def:note"                    background="orange1" bold="true"/>
-  <style name="def:underlined"              italic="true" underline="single"/>
+  <style name="def:net-address"             italic="true" underline="single"/>
 
   <!-- Heading styles, uncomment to enable -->
   <!--
@@ -117,8 +131,7 @@
   <style name="xml:tags"                    foreground="chameleon3"/>
   <style name="xml:namespace"               bold="true"/>
 
-  <style name="js:object"                   foreground="chameleon3" bold="true"/>
-  <style name="js:constructors"             foreground="chameleon3"/>
+  <style name="js:built-in-constructor"     foreground="chameleon3"/>
 
   <style name="latex:display-math"          foreground="plum3"/>
   <style name="latex:command"               foreground="chameleon3" bold="true"/>

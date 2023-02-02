@@ -1,6 +1,7 @@
 <!doctype html>
 
 <html lang="en">
+
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
@@ -9,49 +10,179 @@
   <meta name="description" content="Website to preview a gtksourceview color schema files.">
   <meta name="author" content="Kacper Paczos">
   <style>
-  body{
-    background-color: #404040;
+    body {
+      background-color: #404040;
+      font-size: 11px;
+      color: #dadada;
+    }
 
-  }
-  h1{
-    color: white;
-    text-align: center;
-  }
+    h1 {
+      text-align: center;
+    }
 
-  #id{
-    display: flex;
-  }
-  .row-flex{
-    display: flex;
-  }
-  .row-flex > div{
-    flex: 50%;
-    text-align: center;
-    color: white;
-    margin: auto;
-    display: flex;
-  }
-  .row-flex > h2{
-    flex: 50%;
-    text-align: center;
-    color: white;
-  }
-  h3{
-    flex: 50%;
-    text-align: right;
-  }
-  .square-box{
-    flex: 50%;
-  }
-  .square{
-    width: 40px;
-    height: 40px;
-    background-color: red;
+    #id {
+      display: flex;
+    }
 
-    margin: auto;
-    border: none;
-    border-radius: 6px;
-  }
+    .row-flex {
+      display: flex;
+    }
+
+    .rightleftdiv2 {
+      display: flex;
+      justify-content: flex-end;
+      gap: 20px;
+      min-width: 300px;
+      margin-right: 20px;
+    }
+
+    .row-flex>div {
+      flex: 50%;
+      text-align: center;
+      margin: auto;
+      display: flex;
+    }
+
+    .row-flex>h2 {
+      flex: 50%;
+      text-align: center;
+      justify-content: center;
+    }
+
+    .row-flex>div>h3 {
+      width: 100px;
+      text-align: right;
+      margin-right: 20px;
+    }
+
+    .row-flex:first-child {
+      display: flex;
+      justify-content: flex-start;
+      gap: 20px;
+    }
+
+    .square-box {
+      width: 400px;
+      display: flex;
+      justify-content: flex-start;
+      gap: 20px;
+    }
+
+    .square-box>h3 {
+      text-align: center;
+      max-width: 100px;
+      min-width: 80px;
+    }
+
+    .square-box>button {
+      min-width: 80px;
+      max-height: 20px;
+      margin: auto 0;
+    }
+
+    div>button {
+      min-width: 80px;
+      max-height: 20px;
+      margin: auto 0;
+    }
+
+    div>input {
+      max-height: 20px;
+      margin: auto 0;
+      width: 80px;
+
+    }
+
+    .square {
+      width: 40px;
+      height: 40px;
+      background-color: #007acc;
+
+      border: none;
+      border-radius: 6px;
+    }
+
+    a {
+      text-decoration: none;
+    }
+
+    a:link {
+      color: #007acc;
+    }
+
+    a:active {
+      color: #ff7b21;
+    }
+
+    /* visited link */
+    a:visited {
+      color: #007acc;
+    }
+  </style>
+
+  <style>
+    /* The switch - the box around the slider */
+    .switch {
+      position: relative;
+      display: inline-block;
+      width: 30px;
+      height: 17px;
+    }
+
+    /* Hide default HTML checkbox */
+    .switch input {
+      opacity: 0;
+      width: 0;
+      height: 0;
+    }
+
+    /* The slider */
+    .slider {
+      position: absolute;
+      cursor: pointer;
+      top: 0;
+      left: 0;
+      right: 0;
+      bottom: 0;
+      background-color: #ccc;
+      -webkit-transition: .4s;
+      transition: .4s;
+    }
+
+    .slider:before {
+      position: absolute;
+      content: "";
+      height: 13px;
+      width: 13px;
+      left: 2px;
+      bottom: 2px;
+      background-color: white;
+      -webkit-transition: .4s;
+      transition: .4s;
+    }
+
+    input:checked+.slider {
+      background-color: #2196F3;
+    }
+
+    input:focus+.slider {
+      box-shadow: 0 0 1px #2196F3;
+    }
+
+    input:checked+.slider:before {
+      -webkit-transform: translateX(13px);
+      -ms-transform: translateX(13px);
+      transform: translateX(13px);
+    }
+
+    /* Rounded sliders */
+    .slider.round {
+      border-radius: 34px;
+    }
+
+    .slider.round:before {
+      border-radius: 50%;
+    }
   </style>
 
 </head>
@@ -59,18 +190,50 @@
 <body>
   <!-- your content here... -->
 
-  <div id = "hideme" style="display: block;">
+  <div id="hideme" style="display: block;">
     <h1>Load colors palette from: /usr/share/gtksourceview-4/styles</h1>
-    <input id="fl" name="fl" type="file" style="margin:auto;"/>
+    <div style="margin: 0 auto; width: 300px; padding: 10px; background-color: #fb2373 !important; border-radius: 6px;">
+      <input id="fl" name="fl" type="file" />
+    </div>
   </div>
-  <div id = "showme" style="display: none;">
-    <h1>Color Schema</h1>
+  <div id="showme" style="display: none;">
+    <h1 style="text-align: center;">Color Schema</h1>
+    <div style="display: flex; flex-direction: row; justify-content: center;">
+      <h3 style="width: 80px; text-align: right; margin-right: 10px;">Dark</h3>
+      <label class="switch" style="margin-top: auto; margin-bottom: auto;">
+        <input id="termsCheckbox" type="checkbox" onClick="validateTerms();">
+        <span class="slider round"></span>
+      </label>
+      <h3 style="width: 80px; text-align: left; margin-left: 10px;">Light</h3>
+    </div>
+    <div>
+      <div style="display: flex; flex-direction: row; justify-content: center;">
+        <h3 style="width: 120px; text-align: center; margin-right: 10px;"></h3>
+        <h3 style="width: 80px; text-align: center; margin-right: 10px;">Light: </h3>
+        <h3 style="width: 80px; text-align: center; margin-right: 10px;">Dark: </h3>
+        <h3 style="width: 80px; text-align: center; margin-right: 10px;"></h3>
+      </div>
+      <div style="display: flex; flex-direction: row; justify-content: center;">
+        <h3 style="width: 120px; text-align: right; margin-right: 10px;">Background color: </h3>
+        <input type="text" style="margin-right: 5px;" id="colorBgInput">
+        <input type="text" style="margin-right: 5px;" id="colorBgInputDark">
+        <input type="button" style="margin-left: 5px;" value="Set New" onclick="setBg()">
+      </div>
+      <div style="display: flex; flex-direction: row; justify-content: center;">
+        <h3 style="width: 120px; text-align: right; margin-right: 10px;">Text color: </h3>
+        <input type="text" style="margin-right: 5px;" id="colorInput">
+        <input type="text" style="margin-right: 5px;" id="colorInputDark">
+        <input type="button" style="margin-left: 5px;" value="Set New" onclick="setColor()">
+      </div>
+    </div>
     <div id="gen">
       <div class="row-flex">
         <h2>Previous</h2>
-        <h2>Next</h2>
+        <h2>Next - <a
+            href="https://developer.mozilla.org/en-US/docs/Web/CSS/CSS_Colors/Color_picker_tool">Color_picker_tool</a>
+        </h2>
       </div>
-      <div class="row-flex">
+      <!--<div class="row-flex">
         <div>
           <h3>text</h3>
           <div class="square-box">
@@ -82,129 +245,320 @@
           <div class="square-box">
             <div class="square"></div>
           </div>
-      </div>
+      </div>-->
     </div>
   </div>
+  <!-- DEFLAUT COLORS BG and TEXT -->
   <script>
-  var colorsHex = [];
-  var colorsName = [];
-  var draw = 0;
-  function genFun(){
-    var gen = document.getElementById("gen");
+    localStorage.setItem("colorText", "#303030");
+    localStorage.setItem("colorTextDark", "#dadada");
+    localStorage.setItem("backgroundColor", "#ffffff");
+    localStorage.setItem("backgroundColorDark", "#404040");
 
-    console.log("Petla");
-    console.log(colorsName);
-    console.log(colorsName.length);
-    for(let i = 0 ; i < colorsName.length; i++) {
-      let val = colorsName[i] + colorsHex[i];
-      console.log(val);
-      var rowFlex = document.createElement("div");
-      rowFlex.classList.add("row-flex");
+    // SET DEFAULT
+    document.body.style.backgroundColor = localStorage.getItem("backgroundColorDark");
+    document.body.style.color = localStorage.getItem("colorTextDark");
+  </script>
+  <script>
+    var colorsHex = [];
+    var colorsName = [];
+    var draw = 0;
+    function genFun() {
+      var gen = document.getElementById("gen");
 
-      var left = document.createElement("div");
+      //console.log("Petla");
+      console.log(colorsName);
+      console.log(colorsName.length);
+      for (let i = 0; i < colorsName.length; i++) {
+        let val = colorsName[i] + colorsHex[i];
+        console.log(val);
+        var rowFlex = document.createElement("div");
+        rowFlex.classList.add("row-flex");
 
-      var lefth3 = document.createElement("h3");
-      var leftText = document.createTextNode(colorsName[i]);
-      lefth3.appendChild(leftText);
-      var leftdiv = document.createElement("div");
-      leftdiv.classList.add("square-box");
-      var leftsquare = document.createElement("div");
-      leftsquare.classList.add("square");
-      leftsquare.style.backgroundColor = colorsHex[i];
+        var left = document.createElement("div");
 
-      leftdiv.appendChild(leftsquare);
-      left.appendChild(lefth3);
-      left.appendChild(leftdiv);
-      left.style.display = "flex";
+        var lefth3 = document.createElement("h3");
+        var leftText = document.createTextNode(colorsName[i]);
+        lefth3.appendChild(leftText);
+        var leftdiv = document.createElement("div");
+        leftdiv.classList.add("square-box");
 
-      rowFlex.appendChild(left);
+        var lefth3wtcb = document.createElement("h3");
+        var leftText = document.createTextNode("Lorem ipsum");
+        lefth3wtcb.appendChild(leftText);
+        lefth3wtcb.style.backgroundColor = colorsHex[i];
 
-      var right = document.createElement("div");
-      var righth3 = document.createElement("h3");
-      var rightText = document.createTextNode(colorsName[i]);
-      righth3.appendChild(rightText);
-      var rightdiv = document.createElement("div");
-      rightdiv.classList.add("square-box");
-      var rightsquare = document.createElement("div");
-      rightsquare.classList.add("square");
-      rightsquare.style.backgroundColor = colorsHex[i];
+        var lefth3ct = document.createElement("h3");
+        var leftText = document.createTextNode("Lorem ipsum");
+        lefth3ct.appendChild(leftText);
+        lefth3ct.style.color = colorsHex[i];
 
-      rightdiv.appendChild(rightsquare);
-      right.appendChild(righth3);
-      right.appendChild(rightdiv);
-      right.style.display = "flex";
+        var leftsquare = document.createElement("div");
+        leftsquare.classList.add("square");
+        leftsquare.style.backgroundColor = colorsHex[i];
 
-      rowFlex.appendChild(right);
+        // Create an <button> element, set its type and name attributes
+        var buttonl = document.createElement("button");
+        buttonl.innerHTML = "Copy";
+        buttonl.name = colorsHex[i];
+        buttonl.onclick = function () {
+          navigator.clipboard.writeText(this.name);
+        };
 
-      gen.appendChild(rowFlex);
-    }
-    console.log("Koniec Petli");
-  }
-  document.getElementById('fl').onchange = function(){
+        var lefth3hexinfo = document.createElement("h3");
+        var leftText = document.createTextNode(colorsHex[i]);
+        lefth3hexinfo.appendChild(leftText);
 
-    var fl = this.files[0];
+        leftdiv.appendChild(lefth3wtcb);
+        leftdiv.appendChild(lefth3ct);
+        leftdiv.appendChild(leftsquare);
+        leftdiv.appendChild(lefth3hexinfo);
+        leftdiv.appendChild(buttonl);
+        left.appendChild(lefth3);
 
-    var reader = new FileReader();
-    reader.onload = function(progressEvent){
-      // Entire file
-      //console.log(this.result);
+        left.appendChild(leftdiv);
+        left.style.display = "flex";
 
-      // By allrows
-      var allrows = this.result.split('\n');
-      for(var row = 0; row < allrows.length; row++){
-        const str = '<color name="';
-        var x = allrows[row].indexOf(str);
-        //console.log(x)
-        if(x != -1){
-          var newstring = allrows[row].substring(x+str.length, 200);
-          const str1 = '"';
-          var y = newstring.indexOf(str1);
-          //console.log(y);
-          if(y != -1){
-            //console.log(newstring.substring(0, y));
-            colorsName.push(newstring.substring(0, y));
+        rowFlex.appendChild(left);
+
+        var right = document.createElement("div");
+        var rightleftdiv2 = document.createElement("div");
+        rightleftdiv2.classList.add("rightleftdiv2");
+
+        var righth3 = document.createElement("h3");
+        var rightText = document.createTextNode(colorsName[i]);
+        righth3.appendChild(rightText);
+        rightleftdiv2.appendChild(righth3);
+
+        var inputr = document.createElement("input");
+        inputr.type = "text";
+        inputr.classList.add(colorsHex[i]);
+
+        rightleftdiv2.appendChild(inputr);
+
+        var buttonrset = document.createElement("button");
+        buttonrset.innerHTML = "Set New";
+        buttonrset.classList.add(colorsHex[i]);
+        buttonrset.name = colorsHex[i];
+        buttonrset.onclick = function () {
+          var elements = document.getElementsByClassName(this.name);
+          var oldHex = this.name;
+          if (elements[0].value.length == 7) {
+
+            var newHex = elements[0].value;
+            //alert(newHex);
+            //input
+            elements[0].value = "";
+            elements[0].classList.remove = oldHex;
+            elements[0].classList.add = newHex;
+            //alert(elements[0].tagName);
+
+            //button
+            elements[1].tagName = newHex;
+            elements[1].classList.remove = oldHex;
+            elements[1].classList.add = newHex;
+            //alert(elements[1].tagName);
+
+            //backgroudn
+            elements[2].style.backgroundColor = newHex;
+            elements[2].classList.remove = oldHex;
+            elements[2].classList.add = newHex;
+
+            //alert(elements[2].tagName);
+            //alert(elements[3].tagName);
+            //alert(elements[4].tagName);
+            //alert(elements[5].tagName);       
+
+            //color
+            elements[3].style.color = newHex;
+            elements[3].classList.remove = oldHex;
+            elements[3].classList.add = newHex;
+
+            //name
+            elements[4].textContent = newHex;
+            elements[4].classList.remove = oldHex;
+            elements[4].classList.add = newHex;
+
+            //button
+            elements[5].name = newHex;
+            elements[5].classList.remove = oldHex;
+            elements[5].classList.add = newHex;
           }
+        };
 
-          const str2 = 'value="'
-          var newFind = allrows[row].substring(x+str2.length, 200)
-          var z = newFind.indexOf(str2);
-          //console.log(newFind.substring(x+str2.length, 200));
-          //console.log(z);
-          if(z != -1){
-            var newstring = newFind.substring(z+str2.length, 200)
-            //console.log(newstring);
-            const str3 = '"';
-            var k = newstring.indexOf(str3);
-            //console.log(k);
-            if(k != -1){
-              //console.log(newstring.substring(0, k));
-              colorsHex.push(newstring.substring(0, k));
+        rightleftdiv2.appendChild(buttonrset);
+
+
+        var rightdiv = document.createElement("div");
+        rightdiv.classList.add("square-box");
+
+        var right3wtcb = document.createElement("h3");
+        var leftText = document.createTextNode("Lorem ipsum");
+        right3wtcb.appendChild(leftText);
+        right3wtcb.classList.add(colorsHex[i]);
+        right3wtcb.style.backgroundColor = colorsHex[i];
+
+        var right3ct = document.createElement("h3");
+        var leftText = document.createTextNode("Lorem ipsum");
+        right3ct.appendChild(leftText);
+        right3ct.classList.add(colorsHex[i]);
+        right3ct.style.color = colorsHex[i];
+
+        // Create an <button> element, set its type and name attributes
+        var buttonr = document.createElement("button");
+        buttonr.innerHTML = "Copy";
+        buttonr.name = colorsHex[i];
+        buttonr.classList.add(colorsHex[i]);
+        buttonr.onclick = function () {
+          navigator.clipboard.writeText(this.name);
+        };
+
+        var rightsquare = document.createElement("div");
+        rightsquare.classList.add("square");
+        rightsquare.style.backgroundColor = colorsHex[i];
+
+        var right3hexinfo = document.createElement("h3");
+        var leftText = document.createTextNode(colorsHex[i]);
+        right3hexinfo.appendChild(leftText);
+        right3hexinfo.classList.add(colorsHex[i]);
+
+        rightdiv.appendChild(right3wtcb);
+        rightdiv.appendChild(right3ct);
+        rightdiv.appendChild(rightsquare);
+        rightdiv.appendChild(right3hexinfo);
+        rightdiv.appendChild(buttonr);
+        right.appendChild(rightleftdiv2);
+        right.appendChild(rightdiv);
+        right.style.display = "flex";
+
+        rowFlex.appendChild(right);
+
+        gen.appendChild(rowFlex);
+      }
+      //console.log("Koniec Petli");
+    }
+    document.getElementById('fl').onchange = function () {
+
+      var fl = this.files[0];
+
+      var reader = new FileReader();
+      reader.onload = function (progressEvent) {
+        // Entire file
+        //console.log(this.result);
+
+        // By allrows
+        var allrows = this.result.split('\n');
+        for (var row = 0; row < allrows.length; row++) {
+          const str = '<color name="';
+          var x = allrows[row].indexOf(str);
+          //console.log(x)
+          if (x != -1) {
+            var newstring = allrows[row].substring(x + str.length, 200);
+            const str1 = '"';
+            var y = newstring.indexOf(str1);
+            //console.log(y);
+            if (y != -1) {
+              //console.log(newstring.substring(0, y));
+              colorsName.push(newstring.substring(0, y));
+            }
+
+            const str2 = 'value="'
+            var newFind = allrows[row].substring(x + str2.length, 200)
+            var z = newFind.indexOf(str2);
+            //console.log(newFind.substring(x+str2.length, 200));
+            //console.log(z);
+            if (z != -1) {
+              var newstring = newFind.substring(z + str2.length, 200)
+              //console.log(newstring);
+              const str3 = '"';
+              var k = newstring.indexOf(str3);
+              //console.log(k);
+              if (k != -1) {
+                //console.log(newstring.substring(0, k));
+                colorsHex.push(newstring.substring(0, k));
+              }
             }
           }
         }
-      }
-      draw = 1;
-      console.log(colorsName);
-      console.log(colorsHex);
+        draw = 1;
+        //console.log(colorsName);
+        //console.log(colorsHex);
 
-      if(draw == 1){
-        console.log("Chowam");
-        document.getElementById("hideme").style.display = "none";
-        genFun();
-        console.log("Pokazuje");
-        document.getElementById("showme").style.display = "block";
-      }
+        if (draw == 1) {
+          //console.log("Chowam");
+          document.getElementById("hideme").style.display = "none";
+          genFun();
+          //console.log("Pokazuje");
+          document.getElementById("showme").style.display = "block";
+        }
+      };
+
+      reader.readAsText(fl);
     };
 
+  </script>
 
-    reader.readAsText(fl);
+  <script>
+    function validateTerms() {
+      var c = document.getElementById('termsCheckbox');
+      if (c.checked) {
+        document.body.style.backgroundColor = localStorage.getItem("backgroundColor");
+        document.body.style.color = localStorage.getItem("colorText");
+        console.log("Light");
+        console.log(localStorage.getItem("backgroundColor"));
+        console.log(localStorage.getItem("colorText"));
+      } else {
+        document.body.style.backgroundColor = localStorage.getItem("backgroundColorDark");
+        document.body.style.color = localStorage.getItem("colorTextDark");
+        console.log("Dark");
+        console.log(localStorage.getItem("backgroundColorDark"));
+        console.log(localStorage.getItem("colorTextDark"));
+      }
+    }
 
+    function setBg() {
+      var c = document.getElementById('colorBgInput');
+      var d = document.getElementById('colorBgInputDark');
+      if (c.value.length == 7) {
+        if (document.getElementById('termsCheckbox').checked) {
+          //LIGHT
+          document.body.style.backgroundColor = document.getElementById('colorBgInput').value;
+          localStorage.setItem("backgroundColor", document.getElementById('colorBgInput').value);
+          c.value = "";
+        }
+      }
+      if (d.value.length == 7) {
+        if (!document.getElementById('termsCheckbox').checked) {
+          //DARK
+          localStorage.setItem("backgroundColorDark", document.getElementById('colorBgInputDark').value);
+          document.body.style.backgroundColor = document.getElementById('colorBgInputDark').value;
+          d.value = "";
+        }
+      }
+    }
+    function setColor() {
+      var c = document.getElementById('colorInput');
+      var d = document.getElementById('colorInputDark');
+      if (c.value.length == 7) {
+        if (document.getElementById('termsCheckbox').checked) {
+          //LIGHT
+          localStorage.setItem("colorText", document.getElementById('colorInput').value);
+          document.body.style.color = document.getElementById('colorInput').value;
+          c.value = "";
+        }
 
+      }
+      if (d.value.length == 7) {
+        if (!document.getElementById('termsCheckbox').checked) {
+          //DARK
+          localStorage.setItem("colorTextDark", document.getElementById('colorInputDark').value);
+          document.body.style.color = document.getElementById('colorInputDark').value;
+          d.value = "";
+        }
 
-
-
-  };
-
+      }
+    }
   </script>
 </body>
+
 </html>
