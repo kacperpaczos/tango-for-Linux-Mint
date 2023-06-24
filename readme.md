@@ -25,3 +25,6 @@ Some screenshot:
 
 The newest theme download with source of gtksourceview widget: https://download.gnome.org/sources/gtksourceview/
 Ubuntu 22.04 version for GNOME 3.24: https://packages.ubuntu.com/jammy/amd64/libgtksourceview-3.0-1/download
+
+
+![image](https://github.com/kacperpaczos/tango-for-Linux-Mint/assets/23406555/10396058-7fd4-4bd2-8068-96978cc1e80b)
